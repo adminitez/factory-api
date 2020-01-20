@@ -12,16 +12,16 @@ function mapProduct(item) {
   return {
       code: item.produto.ean,
       description: item.produto.descricao,
-      quantity: item.produto.quantidade
+      quantity: item.produto.quantidade,
+      totalVerified: 0
   };
 }
 
 module.exports = {
   async listPurchaseOrdersPaged(page, size){
-    const purchaseOrdersResponse = await OmieService.listPurchaseOrdersPaged(page, size)
-    const purchaseOrders = purchaseOrdersResponse.pedido_venda_produto.filter((purchaseOrder) => {
-      return purchaseOrder.cabecalho.etapa === '20'})
-
+    const purchaseOrdersResponse = await OmieService.listPurchaseOrdersPaged(page, size, "20")
+    const purchaseOrders = purchaseOrdersResponse.pedido_venda_produto
+    
     const promises = purchaseOrders.map(async purchaseOrder => {
 
       const clientCode = purchaseOrder.cabecalho.codigo_cliente

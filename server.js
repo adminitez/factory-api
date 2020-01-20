@@ -9,7 +9,8 @@ require('dotenv').config()
 requireDir('./src/models')
 
 mongoose.connect(
-    'mongodb+srv://deploy:tafelli0104@cluster0-dxxwd.gcp.mongodb.net/factory-api?retryWrites=true&w=majority',
+    process.env.DATABASE_URL,
+    //'mongodb+srv://deploy:tafelli0104@cluster0-dxxwd.gcp.mongodb.net/factory-api?retryWrites=true&w=majority',
     { 
         useNewUrlParser: true,
         useUnifiedTopology: true
