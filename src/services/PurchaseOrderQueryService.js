@@ -28,11 +28,12 @@ module.exports = {
       const client = await OmieService.getClientByCode(clientCode)
 
       const products = purchaseOrder.det.map(mapProduct)
-      
+
       finalPurchaseOrder = {
-        clientName: client.nome_fantasia,
+        clientName: client.razao_social,
         purchaseOrderId: purchaseOrder.cabecalho.codigo_pedido,
-        products: products
+        products: products,
+        purchaseOrderNumber: purchaseOrder.cabecalho.numero_pedido,
       }
 
       return finalPurchaseOrder

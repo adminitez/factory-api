@@ -7,7 +7,6 @@ const OMIE_APP_SECRET = '71ca51b47c3936ad4fe2c15c7dfbd81d';
 module.exports = {
 
   async listPurchaseOrdersPaged(page, size, stage){
-      console.log(page, size)
       const params = {
           "call": "ListarPedidos",
           "app_key": OMIE_APP_KEY,

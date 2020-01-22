@@ -20,7 +20,6 @@ module.exports = {
     },
     async updatePurchaseOrderProducts(req, res){
         const id = req.params.purchaseOrderId
-        console.log(req.body)
         await PurchaseOrderCommandService.updatePurchaseOrderProducts(id, req.body.products)
 
         res.status(204).send()    
