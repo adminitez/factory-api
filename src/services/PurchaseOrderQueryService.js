@@ -19,7 +19,9 @@ function mapProduct(item) {
 
 module.exports = {
   async listPurchaseOrdersPaged(page, size){
+    try{
     const purchaseOrdersResponse = await OmieService.listPurchaseOrdersPaged(page, size, "20")
+    console.log(purchaseOrdersResponse)
     const purchaseOrders = purchaseOrdersResponse.pedido_venda_produto
     
     const promises = purchaseOrders.map(async purchaseOrder => {
@@ -46,6 +48,11 @@ module.exports = {
       totalPages:purchaseOrdersResponse.total_de_paginas,
       totalRecords:purchaseOrdersResponse.registros,
       purchaseOrders: finalPurchaseOrderList
+    }
+    }
+    catch(error){
+      console.log(error)
+      throw error
     }
   },
   
